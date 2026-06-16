@@ -1,3 +1,12 @@
 & "C:\Program Files\MySQL\MySQL Server 8.0\bin\mysqldump.exe" -u root -p --all-databases --triggers --routines --events --single-transaction --set-gtid-purged=ON --source-data=2 > C:\dump.sql
 & "C:\Program Files\MySQL\MySQL Server 8.0\bin\mysql.exe" -u root -p -e "SELECT @@global.gtid_executed;"
 & "C:\Program Files\MySQL\MySQL Server 8.0\bin\mysql.exe" -u root -p -e "SELECT user, host, ssl_type FROM mysql.user WHERE user='repl';"
+DROP USER IF EXISTS 'repl'@'172.22.20.5';
+
+CREATE USER 'repl'@'172.22.20.5' IDENTIFIED BY 'ReplPass2026!Houston' REQUIRE SSL;
+GRANT REPLICATION SLAVE ON *.* TO 'repl'@'172.22.20.5';
+FLUSH PRIVILEGES;
+
+-- Petite vérification rapide
+SELECT user, host, ssl_type FROM mysql.user WHERE user='repl';
+exit
