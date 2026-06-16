@@ -1,2 +1,3 @@
 & "C:\Program Files\MySQL\MySQL Server 8.0\bin\mysqldump.exe" -u root -p --all-databases --triggers --routines --events --single-transaction --set-gtid-purged=ON --source-data=2 > C:\dump.sql
 & "C:\Program Files\MySQL\MySQL Server 8.0\bin\mysql.exe" -u root -p -e "SELECT @@global.gtid_executed;"
+& "C:\Program Files\MySQL\MySQL Server 8.0\bin\mysql.exe" -u root -p -e "SELECT user, host, ssl_type FROM mysql.user WHERE user='repl';"
