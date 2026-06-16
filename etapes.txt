@@ -1,0 +1,1 @@
+& "C:\Program Files\MySQL\MySQL Server 8.0\bin\mysqldump.exe" -u root -p --all-databases --triggers --routines --events --single-transaction --set-gtid-purged=ON --source-data=2 > C:\dump.sql
